@@ -1,9 +1,8 @@
 const {connect, connection} = require("mongoose")
 
-const mongoDbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/studentsDB'
+const mongoDbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/chatterboxDB'
 
-connection(mongoDbURI, {
-
+connect(mongoDbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })

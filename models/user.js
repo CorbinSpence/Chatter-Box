@@ -6,6 +6,12 @@ const userSchema = new Schema(
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId(),
         },
+        username:{
+            type: String,
+            required: true,
+            unique: true,
+            trimmed: true
+        },
         email:{
             type: String,
             required: true,
