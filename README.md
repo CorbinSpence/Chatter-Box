@@ -12,7 +12,7 @@ You will need to download node ver 16.0.0 and the latest version of npm. You wil
 
 ## Walkthrough
 
-[Walkthrough]()
+[Walkthrough](https://drive.google.com/file/d/1qHrk9G4MT0PzxTi7XJ9JHVegIi_P6iYL/view)
 
 ## Author
 
