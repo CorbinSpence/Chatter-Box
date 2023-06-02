@@ -10,9 +10,9 @@ connection.once('open', async () => {
 
     await User.deleteMany({})
 
-    await User.insertMany(userData)
-
     await Thought.insertMany(thoughtData)
+
+    await User.insertMany(userData)
 
     console.log('Seeding successful.')
 

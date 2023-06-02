@@ -11,7 +11,7 @@ module.exports = {
         })
     },
     getOneUser(req, res){
-        User.findOne({_id: req.params.courseId})
+        User.findOne({_id: req.params.id})
         .then((user)=>{
             res.json(user)
         })
@@ -19,7 +19,7 @@ module.exports = {
             res.status(500).json(err)
         })
     },
-    createUser(){
+    createUser(req, res){
         User.create(req.body)
         .then((user)=>{
             res.json(user)
@@ -28,21 +28,43 @@ module.exports = {
             res.status(500).json(err)
         })
     },
-    deleteUser(){
-        User.findOneAndDelete({_id: req.params.courseId})
+    deleteUser(req, res){
+        User.findOneAndDelete({_id: req.params.id})
         .then((user)=>{
             !user? res.status(404).json("ID not found"): res.json("Thought deleted.")
         }).catch((err)=>{
             res.status(500).json(err)
         })
     },
-    updateUser(){
+    updateUser(req, res){
         User.findOneAndUpdate(
-            {_id: req.params.courseId},
+            {_id: req.params.id},
             {$set:req.body},
             {runValidators: true, new: true}
         )
         .then((user)=>{
+            !user? res.status(404).json("ID not found"): res.json(user)
+            
+        }).catch((err)=>{
+            res.status(500).json(err)
+        })
+    },
+    addFriend(req, res){
+        User.updateOne(
+            {_id:req.params.userId},
+            {$push: {friends: req.params.friendId}}
+        ).then((user)=>{
+            !user? res.status(404).json("ID not found"): res.json(user)
+            
+        }).catch((err)=>{
+            res.status(500).json(err)
+        })
+    },
+    deleteFriend(req, res){
+        User.updateOne(
+            {_id:req.params.userId},
+            {$pull: {friends:req.params.friendId}}
+        ).then((user)=>{
             !user? res.status(404).json("ID not found"): res.json(user)
             
         }).catch((err)=>{
